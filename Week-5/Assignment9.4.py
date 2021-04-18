@@ -15,30 +15,20 @@ count = 0
 d = dict()
 
 for line in handle:
-    
     if not line.startswith('From'):continue
     
-    line = line.split()
+    words = line.split()
+    word = words[1]
     
-    if line[0] == 'From':
-        
-        line1 =  line[1]
-       
-        for word in line1.split():
-            
-            if word not in d:
-                
-                d[word] = 1
-            else:
-                d[word]+=1
-        
-        count = count + 1
+    dic[word] = dic.get(word, 0) + 1
+
         
 maximum = None
 k = None
 for key,value in d.items():
     
-    if maximum is None or value>maximum:
+    if maximum is None or value > maximum:
         maximum = value
         k=key
-print k,maximum
+
+print (k,maximum)
