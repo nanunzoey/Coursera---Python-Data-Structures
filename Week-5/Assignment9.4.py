@@ -26,9 +26,8 @@ for line in handle:
 maximum = None
 k = None
 for key,value in d.items():
-    
     if maximum is None or value > maximum:
         maximum = value
         k=key
 
-print (k,maximum)
+print(k,maximum)
