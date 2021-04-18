@@ -7,28 +7,22 @@ From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
 Once you have accumulated the counts for each hour, print out the counts,
 sorted by hour as shown below.
 '''
-name = raw_input("Enter file:")
+name = input("Enter file:")
 if len(name) < 1 : name = "mbox-short.txt"
 handle = open(name)
-d=dict()
-count = 0
+
+dic = {}
+
 for line in handle:
+    if not line.startswith('From '): continue
     
-    if not line.startswith('From'):continue
-        
-    line=line.split()
+    line = line.split()
+    time = line[5].split(':')
+    hour = time[0]
     
-    if line[0]=='From':
-        
-        line =  line[5].split(':')
-        
-        for hrs in line[0].split():
-            
-            if hrs not in d:
-                
-                d[hrs]=1
-            else:
-                d[hrs]+=1
-                
-for key,value in sorted(d.items()):
-    print key,value
+    dic[hour] = dic.get(hour, 0) + 1    
+
+tmp = []
+
+for k, v in sorted(dic.items()):
+    print(k, v)
